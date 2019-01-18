@@ -29,9 +29,7 @@ func BondTxCmd(cdc *codec.Codec) *cobra.Command {
 		Short: "Bond to a validator",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			txBldr := authtxb.NewTxBuilderFromCLI().WithTxEncoder(utils.GetTxEncoder(cdc))
-			cliCtx := context.NewCLIContext().
-				WithCodec(cdc).
-				WithAccountDecoder(cdc)
+			cliCtx := context.NewCLIContext(cdc).SetAccountDecoder()
 
 			from, err := cliCtx.GetFromAddress()
 			if err != nil {
@@ -82,8 +80,7 @@ func UnbondTxCmd(cdc *codec.Codec) *cobra.Command {
 		Short: "Unbond from a validator",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			txBldr := authtxb.NewTxBuilderFromCLI().WithTxEncoder(utils.GetTxEncoder(cdc))
-			cliCtx := context.NewCLIContext().
-				WithCodec(cdc)
+			cliCtx := context.NewCLIContext(cdc)
 
 			from, err := cliCtx.GetFromAddress()
 			if err != nil {
