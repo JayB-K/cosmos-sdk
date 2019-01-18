@@ -37,6 +37,7 @@ func main() {
 		Short:             "Gaia Daemon (server)",
 		PersistentPreRunE: server.PersistentPreRunEFn(ctx),
 	}
+
 	rootCmd.AddCommand(gaiaInit.InitCmd(ctx, cdc))
 	rootCmd.AddCommand(gaiaInit.CollectGenTxsCmd(ctx, cdc))
 	rootCmd.AddCommand(gaiaInit.TestnetFilesCmd(ctx, cdc))
